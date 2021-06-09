@@ -63,8 +63,8 @@ func FnIota(c echo.Context) (err error) {
 	}
 
 	// stringBySlice() convert month index to string name
-	toMonthName := stringBySlice(*mDate.Month)
-	fmt.Println(toMonthName)
+	// toMonthName := stringBySlice(*mDate.Month)
+	// fmt.Println(toMonthName)
 
 	return c.JSON(http.StatusOK, map[string]interface{}{"status": "ok"})
 
