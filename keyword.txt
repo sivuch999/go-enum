@@ -1,0 +1,4 @@
+m = model <> mAnimal -> model name's Animal
+p = parameter <> pColor -> parameter name's Color
+is = boolean varable <> isValid -> Valid true/false only
+fn = declare function <> fnBasic -> function name's Basic
