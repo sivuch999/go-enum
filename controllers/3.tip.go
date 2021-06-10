@@ -19,10 +19,10 @@ type Date struct {
 // 	Day   *string `json:"day,omitempty"`
 // 	Month *int    `json:"month,omitempty"`
 // }
-// type DateFaceFace struct {
-// 	Day   *string `json:"day,omitempty"`
-// 	Month *int    `json:"month,omitempty"`
-// }
+
+type Etc struct {
+	Item *string `json:"item,omitempty"`
+}
 
 const (
 	Sunday    string = "sunday"
@@ -34,9 +34,9 @@ const (
 	Saturday  string = "saturday"
 )
 const (
-	Januray int = iota + 1
-	February
-	March
+	Januray  int = iota + 1 // 1
+	February                // 2
+	March                   // 3
 	April
 	May
 	June
@@ -45,22 +45,35 @@ const (
 	September
 	October
 	November
-	December
+	December // 12
+)
+const (
+	Tv       string = "tv"
+	Computer string = "computer"
 )
 
 func FnIota(c echo.Context) (err error) {
+	// >> Date
 	mDate := Date{}
-
 	err = c.Bind(&mDate)
 	if err != nil {
 		log.Println(err)
 		return err
 	}
-
-	// getType() to get struct name of variable
-	if !validateEnumTip(mDate.Day, mDate.Month, getType(mDate)) {
+	if !validateEnumTip(mDate.Day, mDate.Month, getType(mDate)) { // getType() to get struct name of variable
 		return fmt.Errorf("verify day/month enum is fail")
 	}
+
+	// >> Etc
+	// mEtc := Etc{}
+	// err = c.Bind(&mEtc)
+	// if err != nil {
+	// 	log.Println(err)
+	// 	return err
+	// }
+	// if !validateEnumTip(mEtc.Item, nil, getType(mEtc)) { // getType() to get struct name of variable
+	// 	return fmt.Errorf("verify item enum is fail")
+	// }
 
 	// stringBySlice() convert month index to string name
 	// toMonthName := stringBySlice(*mDate.Month)
@@ -71,11 +84,15 @@ func FnIota(c echo.Context) (err error) {
 }
 
 func validateEnumTip(pStr *string, pInt *int, pType string) bool {
+	fmt.Println(*pStr, pType)
 	if pStr != nil {
 		switch *pStr {
 		case Sunday, Monday, Tuesday, Thursday, Friday, Saturday:
 			return pType == "Date"
+		case Tv, Computer:
+			return pType == "Etc"
 		}
+
 	}
 	if pInt != nil {
 		switch *pInt {

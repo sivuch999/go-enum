@@ -21,8 +21,8 @@ const (
 	Cat AnimalName = "cat"
 )
 const (
-	Red AnimalColor = iota
-	Green
+	Red   AnimalColor = iota // 0
+	Green                    // 1
 )
 
 /// function ///

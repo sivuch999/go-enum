@@ -10,8 +10,8 @@ import (
 
 /// declare stuct ///
 type Today struct {
-	Feeling     *string `json:"feeling,omitempty"`
-	FeelingEnum *FeelingEnum
+	Feeling     *string      `json:"feeling,omitempty"`
+	FeelingEnum *FeelingEnum // good or bad
 }
 type FeelingEnum struct {
 	Good string
@@ -36,6 +36,13 @@ func FnOld(c echo.Context) (err error) {
 }
 
 /// service ///
+func getFeeling() *FeelingEnum {
+	return &FeelingEnum{
+		Good: "good",
+		Bad:  "bad",
+	}
+}
+
 func verifyEnumOld(pFeeling *string) bool {
 	var feeling = getFeeling()
 	switch *pFeeling {
@@ -43,11 +50,4 @@ func verifyEnumOld(pFeeling *string) bool {
 		return true
 	}
 	return false
-}
-
-func getFeeling() *FeelingEnum {
-	return &FeelingEnum{
-		Good: "good",
-		Bad:  "bad",
-	}
 }
