@@ -51,7 +51,6 @@ func (pName *AnimalName) verifyEnum() bool {
 	case Dog, Cat:
 		return true
 	}
-
 	return false
 }
 func (pColor *AnimalColor) verifyEnum() bool {

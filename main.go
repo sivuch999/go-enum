@@ -24,7 +24,3 @@ func main() {
 	}
 	e.Logger.Fatal(e.Start(fmt.Sprintf(":%s", port)))
 }
-
-func FnRouteBasic(api *echo.Group) {
-
-}

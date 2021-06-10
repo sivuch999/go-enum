@@ -14,11 +14,10 @@ type Date struct {
 	Day   *string `json:"day,omitempty"`
 	Month *int    `json:"month,omitempty"`
 }
-
-// type DateFace struct {
-// 	Day   *string `json:"day,omitempty"`
-// 	Month *int    `json:"month,omitempty"`
-// }
+type DateFace struct {
+	Day   *string `json:"day,omitempty"`
+	Month *int    `json:"month,omitempty"`
+}
 
 type Etc struct {
 	Item *string `json:"item,omitempty"`
@@ -34,7 +33,7 @@ const (
 	Saturday  string = "saturday"
 )
 const (
-	Januray  int = iota + 1 // 1
+	January  int = iota + 1 // 1
 	February                // 2
 	March                   // 3
 	April
@@ -76,29 +75,29 @@ func FnIota(c echo.Context) (err error) {
 	// }
 
 	// stringBySlice() convert month index to string name
-	// toMonthName := stringBySlice(*mDate.Month)
-	// fmt.Println(toMonthName)
+	toMonthName := stringBySlice(*mDate.Month)
+	fmt.Println(toMonthName)
 
 	return c.JSON(http.StatusOK, map[string]interface{}{"status": "ok"})
 
 }
 
 func validateEnumTip(pStr *string, pInt *int, pType string) bool {
-	fmt.Println(*pStr, pType)
+	fmt.Println(pType)
 	if pStr != nil {
 		switch *pStr {
 		case Sunday, Monday, Tuesday, Thursday, Friday, Saturday:
-			return pType == "Date"
+			return pType == "Date" || pType == "DateFace"
 		case Tv, Computer:
 			return pType == "Etc"
 		}
-
-	}
-	if pInt != nil {
+	} else if pInt != nil {
 		switch *pInt {
-		case Januray, February, March, April, May, June, July, August, September, October, November, December:
+		case January, February, March, April, May, June, July, August, September, October, November, December:
 			return pType == "Date"
 		}
+	} else {
+		//
 	}
 	return false
 }
@@ -113,12 +112,13 @@ func getType(pStruct interface{}) string {
 }
 
 func stringByArray(pKey int) string {
-	arrayJa := [...]string{"januray", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december"}
-	// arrayJa = append(arrayJa, "januray")
+	arrayJa := [...]string{"january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december"}
+	// arrayJa = append(arrayJa, "january")
 	return arrayJa[pKey-1]
 }
+
 func stringBySlice(pKey int) string {
-	sliceJa := []string{"januray", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december"}
-	// sliceJa = append(sliceJa, "januray")
+	sliceJa := []string{"january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december"}
+	// sliceJa = append(sliceJa, "january")
 	return sliceJa[pKey-1]
 }
