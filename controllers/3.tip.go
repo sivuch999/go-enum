@@ -74,8 +74,7 @@ func FnIota(c echo.Context) (err error) {
 	// 	return fmt.Errorf("verify item enum is fail")
 	// }
 
-	// stringBySlice() convert month index to string name
-	toMonthName := stringBySlice(*mDate.Month)
+	toMonthName := stringBySlice(*mDate.Month) // stringBySlice() convert month index to string name
 	fmt.Println(toMonthName)
 
 	return c.JSON(http.StatusOK, map[string]interface{}{"status": "ok"})
@@ -83,7 +82,6 @@ func FnIota(c echo.Context) (err error) {
 }
 
 func validateEnumTip(pStr *string, pInt *int, pType string) bool {
-	fmt.Println(pType)
 	if pStr != nil {
 		switch *pStr {
 		case Sunday, Monday, Tuesday, Thursday, Friday, Saturday:
